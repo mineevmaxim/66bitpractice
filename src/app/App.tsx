@@ -1,7 +1,8 @@
-import { Text } from 'shared/ui/Text/Text.tsx';
 import { useTheme } from 'shared/lib/hooks/useTheme/useTheme.ts';
 import { classNames } from 'shared/lib/classNames/classNames.ts';
 import { Suspense } from 'react';
+import { Navbar } from 'widgets/Navbar';
+import AppRouter from 'app/providers/router/ui/AppRouter.tsx';
 
 function App() {
     const { theme, toggleTheme } = useTheme();
@@ -12,12 +13,9 @@ function App() {
             className={classNames('app', {}, [theme])}
         >
             <Suspense fallback="">
-                {/*<Navbar />*/}
+                <Navbar />
                 <div className="content-page">
-                    <button onClick={toggleTheme}>
-                        <Text text={'switch theme'} />
-                    </button>
-                    {/*<AppRouter />*/}
+                    <AppRouter />
                 </div>
             </Suspense>
         </div>

@@ -1,0 +1,42 @@
+.Page {
+    display: grid;
+    min-height: calc(100vh - var(--navbar-height) - 10px);
+}
+
+@media (max-width: 768px) {
+    .Page {
+        width: 100%;
+        padding: 15px;
+
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 768px) {
+    .Page {
+        width: 680px;
+        padding: 20px 0;
+
+        grid-template-columns: repeat(8, 65px);
+        grid-column-gap: 20px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .Page {
+        width: 1000px;
+        padding: 20px 0;
+
+        grid-template-columns: repeat(12, 65px);
+        grid-column-gap: 20px;
+    }
+}
+
+.center {
+    justify-content: center;
+}
+
+.trigger {
+    height: 20px;
+    margin: 10px;
+}

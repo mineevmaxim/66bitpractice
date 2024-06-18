@@ -2,15 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { memo } from 'react';
 import cls from './Text.module.scss';
 
-export type TextVariant =
-    | 'primary'
-    | 'secondary'
-    | 'gray'
-    | 'error'
-    | 'white'
-    | 'accent'
-    | 'green'
-    | 'dark_red';
+export type TextVariant = 'primary' | 'secondary';
 export type TextAlign = 'right' | 'left' | 'center';
 export type TextSize =
     | 'display_2xl'

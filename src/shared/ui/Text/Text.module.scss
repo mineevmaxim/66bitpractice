@@ -16,49 +16,13 @@
 
 .primary {
     .text {
-        color: var(--primary-color);
+        color: var(--font-color-primary);
     }
 }
 
 .secondary {
     .text {
-        color: var(--neutral-50);
-    }
-}
-
-.gray {
-    .text {
-        color: var(--neutral-200);
-    }
-}
-
-.error {
-    .text {
-        color: var(--failure-400);
-    }
-}
-
-.white {
-    .text {
-        color: var(--primary-900);
-    }
-}
-
-.accent {
-    .text {
-        color: var(--primary-100);
-    }
-}
-
-.green {
-    .text {
-        color: var(--success-100);
-    }
-}
-
-.dark_red {
-    .text {
-        color: var(--failure-100);
+        color: var(--font-color-secondary);
     }
 }
 
