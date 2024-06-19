@@ -1,0 +1,63 @@
+.InputWrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    border: 0.5px solid var(--font-color-secondary);
+    height: 43px;
+    width: 100%;
+    top: 400px;
+    left: 200px;
+    padding: 0 10px;
+    gap: 10px;
+}
+
+.focused {
+    border: 0.5px solid var(--button-color);
+
+    .addonLeft svg, .addonRight svg {
+        color: var(--accent-redesigned);
+    }
+
+    ::placeholder {
+        color: var(--font-color-secondary);
+        opacity: 1; /* Firefox */
+    }
+
+    ::-ms-input-placeholder { /* Edge 12 -18 */
+        color: var(--font-color-secondary);
+    }
+}
+
+.addonLeft, .addonRight {
+    display: flex;
+}
+
+.withAddonLeft {
+    padding-left: 8px;
+}
+
+.withAddonRight {
+    padding-right: 8px;
+}
+
+.input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--text-redesigned);
+
+    &:focus {
+        outline: none;
+    }
+
+    &::placeholder {
+        color: var(--hint-redesigned);
+    }
+}
+
+.readonly {
+    opacity: 0.7;
+}
+
+

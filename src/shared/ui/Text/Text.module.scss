@@ -1,3 +1,7 @@
+.Text {
+
+}
+
 .wrap {
     .text {
         white-space: wrap;
@@ -23,6 +27,12 @@
 .secondary {
     .text {
         color: var(--font-color-secondary);
+    }
+}
+
+.inverted {
+    .text {
+        color: var(--font-color-inverted);
     }
 }
 

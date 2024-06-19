@@ -3,9 +3,10 @@ import { classNames } from 'shared/lib/classNames/classNames.ts';
 import { Suspense } from 'react';
 import { Navbar } from 'widgets/Navbar';
 import AppRouter from 'app/providers/router/ui/AppRouter.tsx';
+import { Breadcrumbs } from 'widgets/BreadCrumbs/ui/BreadCrumbs.tsx';
 
 function App() {
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
 
     return (
         <div
@@ -14,6 +15,7 @@ function App() {
         >
             <Suspense fallback="">
                 <Navbar />
+                <Breadcrumbs />
                 <div className="content-page">
                     <AppRouter />
                 </div>

@@ -17,8 +17,18 @@ export const Navbar = memo((props: NavbarProps) => {
             <div className={cls.container}>
                 <LogoIcon />
                 <div className={cls.info}>
-                    <Text text={'+7 343 290 84 76'} />
-                    <Text text={'info@66bit.ru'} />
+                    <a
+                        className={cls.link}
+                        href={'tel:+73432908476'}
+                    >
+                        <Text text={'+7 343 290 84 76'} />
+                    </a>
+                    <a
+                        className={cls.link}
+                        href={'mailto:info@66bit.ru'}
+                    >
+                        <Text text={'info@66bit.ru'} />
+                    </a>
                     <ThemeSwitcher />
                 </div>
             </div>

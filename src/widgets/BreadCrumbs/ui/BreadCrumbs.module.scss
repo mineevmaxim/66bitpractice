@@ -1,37 +1,22 @@
-.Navbar {
-    height: var(--navbar-height);
-    box-shadow: var(--shadow);
-    position: sticky;
-    width: 100%;
+.Breadcrumbs {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    height: var(--bread-crumbs-height);
+    width: 100%;
 }
 
 .container {
     display: flex;
     width: 80%;
     align-items: center;
-    justify-content: space-between;
-}
-
-.info {
-    display: flex;
-    gap: 32px;
-}
-
-.link {
-    cursor: pointer;
 }
 
 @media (max-width: 768px) {
     .container {
         width: 100%;
         padding: 10px 24px 10px 24px;
-    }
-
-    .link {
-        display: none;
     }
 }
 

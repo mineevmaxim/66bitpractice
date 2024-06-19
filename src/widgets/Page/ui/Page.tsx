@@ -7,16 +7,19 @@ interface PageProps {
     children: ReactNode;
     center?: boolean;
     onScrollEnd?: () => void;
+    grid?: boolean;
 }
 
 export const PAGE_ID = 'PAGE_ID';
 
 export const Page = memo((props: PageProps) => {
-    const { className, children, center = true, onScrollEnd } = props;
+    const { className, children, center = true, onScrollEnd, grid = false } = props;
 
     return (
         <main
-            className={classNames(cls.Page, { [cls.center]: center }, [className])}
+            className={classNames(cls.Page, { [cls.center]: center, [cls.grid]: grid }, [
+                className,
+            ])}
             id={PAGE_ID}
         >
             {children}

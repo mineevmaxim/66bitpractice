@@ -1,0 +1,23 @@
+.StuffListItem {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 3fr 2fr 2fr;
+    grid-auto-flow: column;
+    border-bottom: 1px solid var(--border-color);
+    padding: 28px 12px 28px 12px;
+
+    &:hover {
+        cursor: pointer;
+        background: var(--accent-color);
+    }
+}
+
+.header {
+    pointer-events: none;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

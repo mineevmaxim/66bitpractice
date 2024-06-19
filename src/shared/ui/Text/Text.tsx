@@ -2,7 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { memo } from 'react';
 import cls from './Text.module.scss';
 
-export type TextVariant = 'primary' | 'secondary';
+export type TextVariant = 'primary' | 'secondary' | 'inverted';
 export type TextAlign = 'right' | 'left' | 'center';
 export type TextSize =
     | 'display_2xl'
@@ -35,7 +35,7 @@ export const Text = memo((props: TextProps) => {
         text,
         variant = 'primary',
         align = 'left',
-        size = 'md',
+        size = 'lg',
         weight = 'regular',
         family = 'raleway',
     } = props;

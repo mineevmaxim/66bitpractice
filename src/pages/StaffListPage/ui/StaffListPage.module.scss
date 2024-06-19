@@ -1,11 +1,15 @@
-.Page {
+.StaffListPage {
     display: flex;
-    width: 100%;
-    min-height: calc(100vh - var(--navbar-height) - var(--bread-crumbs-height));
+    align-items: center;
+    flex-direction: column;
+}
+
+.filters {
+    background: var(--accent-color);
 }
 
 @media (max-width: 768px) {
-    .grid {
+    .container {
         width: 100%;
         padding: 15px;
 
@@ -14,31 +18,22 @@
 }
 
 @media (min-width: 768px) {
-    .grid {
+    .container {
         width: 680px;
         padding: 20px 0;
     }
 }
 
 @media (min-width: 1280px) {
-    .grid {
+    .container {
         width: 1000px;
         padding: 20px 0;
     }
 }
 
 @media (min-width: 1600px) {
-    .grid {
+    .container {
         width: 1584px;
         padding: 20px 0;
     }
-}
-
-.center {
-    justify-content: center;
-}
-
-.trigger {
-    height: 20px;
-    margin: 10px;
 }

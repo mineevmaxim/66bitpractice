@@ -1,0 +1,35 @@
+.Crumb {
+    display: flex;
+    width: min-content;
+    align-items: center;
+    color: var(--font-color-secondary);
+
+    .text {
+        p {
+            white-space: nowrap;
+        }
+    }
+
+    &Link {
+        display: flex;
+        align-items: center;
+        color: var(--font-color-secondary);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--font-color-primary);
+        }
+    }
+
+    &Icon {
+        &__arrow {
+            margin: 0 20px;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+    }
+}
