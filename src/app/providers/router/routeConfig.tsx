@@ -1,4 +1,6 @@
 import { RouteProps } from 'react-router-dom';
+import { MainPage } from 'pages/MainPage';
+import { ProfilePage } from 'pages/ProfilePage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -19,10 +21,10 @@ export const RoutePath: Record<AppRoutes, string> = {
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
-        element: <div>main</div>,
+        element: <MainPage />,
     },
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile + ':id',
-        element: <div>profile</div>,
+        element: <ProfilePage />,
     },
 };

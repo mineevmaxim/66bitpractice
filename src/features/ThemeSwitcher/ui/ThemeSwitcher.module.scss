@@ -1,0 +1,30 @@
+.ThemeSwitcher {
+    width: 55px;
+    height: 26px;
+    border-radius: 16px;
+    background: var(--button-color);
+    padding: 2px;
+    position: relative;
+    outline: none;
+    border: none;
+    box-shadow: 0 4px 4px 0 #00000040 inset;
+    cursor: pointer;
+}
+
+.icon {
+    background: #FFFFFF;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2px;
+}
+
+.dark {
+    .icon {
+        margin-left: auto;
+        margin-right: 2px;
+    }
+}
