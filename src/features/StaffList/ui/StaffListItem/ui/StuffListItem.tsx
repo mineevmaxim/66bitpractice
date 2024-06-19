@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from 'shared/lib/classNames/classNames.ts';
 import { memo } from 'react';
 import cls from './StuffListItem.module.scss';
 import { Employee } from 'entities/Employee/model/types/employee.ts';
@@ -19,21 +19,25 @@ export const StuffListItem = memo((props: StuffListItemProps) => {
         return (
             <div className={classNames(cls.StuffListItem, {}, [cls.header, className])}>
                 <Text
+                    align={'left'}
                     text={'ФИО'}
                     variant={'secondary'}
                     className={cls.item}
                 />
                 <Text
+                    align={'left'}
                     text={'Должность'}
                     variant={'secondary'}
                     className={cls.item}
                 />
                 <Text
+                    align={'left'}
                     text={'Телефон'}
                     variant={'secondary'}
                     className={cls.item}
                 />
                 <Text
+                    align={'left'}
                     text={'Дата рождения'}
                     variant={'secondary'}
                     className={cls.item}
@@ -58,7 +62,7 @@ export const StuffListItem = memo((props: StuffListItemProps) => {
                 className={cls.item}
             />
             <Text
-                text={employee?.phone}
+                text={employee?.phone.replace('(', '').replace(')', '')}
                 variant={'primary'}
                 className={cls.item}
             />

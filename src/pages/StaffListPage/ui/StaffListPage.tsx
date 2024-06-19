@@ -7,7 +7,7 @@ import { Text } from 'shared/ui/Text/Text.tsx';
 import { VStack } from 'shared/ui/Stack/VStack/VStack.tsx';
 import { Input } from 'shared/ui/Input/Input.tsx';
 import { Button } from 'shared/ui/Button/Button.tsx';
-import { StaffList } from 'features/StaffList/ui/StaffList.tsx';
+import { StaffList } from 'features/StaffList/ui/StaffList/StaffList.tsx';
 import { Employee } from 'entities/Employee/model/types/employee.ts';
 
 interface StaffListPageProps {
@@ -21,7 +21,7 @@ const items: Employee[] = [
         photo: 'http://frontend-test-api.stk8s.66bit.ru/photos/male/7.jpg',
         phone: '+7 (987) 473-16-30',
         gender: 'male',
-        position: 'Manager',
+        position: 'Frontend',
         stack: ['Word'],
         birthdate: '02 октября 1994',
         dateOfEmployment: '03 марта 2016',

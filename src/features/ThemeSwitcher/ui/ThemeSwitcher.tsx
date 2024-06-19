@@ -17,7 +17,7 @@ export const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
 
     return (
         <Switch
-            checked={theme === Theme.DARK}
+            checked={theme === Theme.LIGHT}
             onChange={toggleTheme}
             className={classNames(cls.ThemeSwitcher, { [cls.dark]: theme === Theme.DARK }, [
                 className,

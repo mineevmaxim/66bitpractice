@@ -1,8 +1,8 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from 'shared/lib/classNames/classNames.ts';
 import { memo, useMemo } from 'react';
 import cls from './StaffList.module.scss';
 import { VStack } from 'shared/ui/Stack/VStack/VStack.tsx';
-import { StuffListItem } from 'entities/StaffListItem';
+import { StuffListItem } from 'features/StaffList/ui/StaffListItem';
 import { Employee } from 'entities/Employee/model/types/employee.ts';
 
 interface StaffListProps {
