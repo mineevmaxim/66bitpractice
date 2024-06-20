@@ -1,7 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo, ReactNode } from 'react';
+import { memo, MutableRefObject, ReactNode, useRef } from 'react';
 import cls from './Page.module.scss';
-import { Breadcrumbs } from 'widgets/BreadCrumbs';
+import { Breadcrumbs } from '../../BreadCrumbs/index.ts';
+import { useInfiniteScroll } from 'shared/lib/hooks/useInfiniteScroll/useInfiniteScroll.ts';
 
 interface PageProps {
     className?: string;
@@ -16,7 +17,12 @@ export const PAGE_ID = 'PAGE_ID';
 
 export const Page = memo((props: PageProps) => {
     const { className, children, center = true, onScrollEnd, grid = false, crumb } = props;
+    const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
+    useInfiniteScroll({
+        triggerRef,
+        callback: onScrollEnd,
+    });
     return (
         <>
             <Breadcrumbs lastCrumb={crumb} />
@@ -27,7 +33,12 @@ export const Page = memo((props: PageProps) => {
                 id={PAGE_ID}
             >
                 {children}
-                {onScrollEnd ? <div className={cls.trigger} /> : null}
+                {onScrollEnd ? (
+                    <div
+                        className={cls.trigger}
+                        ref={triggerRef}
+                    />
+                ) : null}
             </main>
         </>
     );

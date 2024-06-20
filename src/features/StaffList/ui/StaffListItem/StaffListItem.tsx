@@ -1,18 +1,19 @@
 import { classNames } from 'shared/lib/classNames/classNames.ts';
 import { memo } from 'react';
-import cls from './StuffListItem.module.scss';
-import { Employee } from 'entities/Employee/model/types/employee.ts';
+import cls from './StaffListItem.module.scss';
+import { EmployeeDto } from '/entities/Employee';
 import { Text } from 'shared/ui/Text/Text.tsx';
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line ellepheria-plugin/layer-imports
 import { RoutePath } from 'app/providers/router/routeConfig.tsx';
 
 interface StuffListItemProps {
     className?: string;
-    employee?: Employee;
+    employee?: EmployeeDto;
     isHeader?: boolean;
 }
 
-export const StuffListItem = memo((props: StuffListItemProps) => {
+export const StaffListItem = memo((props: StuffListItemProps) => {
     const { className, isHeader = false, employee } = props;
 
     if (isHeader) {

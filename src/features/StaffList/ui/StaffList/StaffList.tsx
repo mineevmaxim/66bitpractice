@@ -2,12 +2,12 @@ import { classNames } from 'shared/lib/classNames/classNames.ts';
 import { memo, useMemo } from 'react';
 import cls from './StaffList.module.scss';
 import { VStack } from 'shared/ui/Stack/VStack/VStack.tsx';
-import { StuffListItem } from 'features/StaffList/ui/StaffListItem';
-import { Employee } from 'entities/Employee/model/types/employee.ts';
+import { StaffListItem } from '../StaffListItem/StaffListItem';
+import { EmployeeDto } from '/entities/Employee';
 
 interface StaffListProps {
     className?: string;
-    employees?: Employee[];
+    employees?: EmployeeDto[];
 }
 
 export const StaffList = memo((props: StaffListProps) => {
@@ -16,7 +16,7 @@ export const StaffList = memo((props: StaffListProps) => {
     const itemsList = useMemo(
         () => (
             <>
-                <StuffListItem
+                <StaffListItem
                     isHeader
                     className={cls.header}
                 />
@@ -24,7 +24,12 @@ export const StaffList = memo((props: StaffListProps) => {
                     max
                     className={cls.items}
                 >
-                    {employees?.map((employee) => <StuffListItem employee={employee} />)}
+                    {employees?.map((employee) => (
+                        <StaffListItem
+                            key={employee.id}
+                            employee={employee}
+                        />
+                    ))}
                 </VStack>
             </>
         ),

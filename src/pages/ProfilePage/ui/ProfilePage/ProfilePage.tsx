@@ -29,7 +29,7 @@ const ProfilePage = memo((props: ProfilePageProps) => {
                     setProfile(res.data);
                 });
         }
-    });
+    }, [id]);
 
     if (!id || !profile) return null;
 
