@@ -1,35 +1,42 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import cls from './ProfilePage.module.scss';
-import { Page } from 'widgets/Page/ui/Page.tsx';
+import { Page } from 'widgets/Page';
 import { HStack } from 'shared/ui/Stack/HStack/HStack.tsx';
-import { Employee } from 'entities/Employee/model/types/employee.ts';
+import { EmployeeDto } from 'entities/Employee';
 import { VStack } from 'shared/ui/Stack/VStack/VStack.tsx';
 import { Text } from 'shared/ui/Text/Text.tsx';
 import { Tab } from 'shared/ui/Tab/Tab.tsx';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 interface ProfilePageProps {
     className?: string;
 }
 
-const profile: Employee = {
-    id: 96,
-    name: 'Красильникова Вера Викторовна',
-    photo: 'http://frontend-test-api.stk8s.66bit.ru/photos/female/8.jpg',
-    phone: '+7 (939) 124-49-96',
-    gender: 'female',
-    position: 'Designer',
-    stack: ['Figma', 'CSharp', 'PHP'],
-    birthdate: '13 июля 1993',
-    dateOfEmployment: '09 декабря 2017',
-};
-
 const ProfilePage = memo((props: ProfilePageProps) => {
     const { className } = props;
+    const [profile, setProfile] = useState<EmployeeDto | null>(null);
+
+    const { id } = useParams<{ id: string }>();
+
+    useEffect(() => {
+        if (id) {
+            axios
+                .get<EmployeeDto>('https://frontend-test-api.stk8s.66bit.ru/api/Employee/' + id)
+                .then((res) => {
+                    if (!res.data) return null;
+                    setProfile(res.data);
+                });
+        }
+    });
+
+    if (!id || !profile) return null;
 
     return (
         <Page
             grid
+            crumb={profile?.name}
             center={false}
             className={classNames(cls.ProfilePage, {}, [className])}
         >
@@ -59,7 +66,10 @@ const ProfilePage = memo((props: ProfilePageProps) => {
                     />
                     <HStack gap={'16'}>
                         {profile.stack.map((item) => (
-                            <Tab text={item} />
+                            <Tab
+                                key={item}
+                                text={item}
+                            />
                         ))}
                     </HStack>
                 </VStack>
@@ -82,7 +92,7 @@ const ProfilePage = memo((props: ProfilePageProps) => {
                     />
                     <Text
                         size={'display_xs'}
-                        text={profile.phone}
+                        text={profile.phone.replace('(', '').replace(')', '')}
                         className={cls.right}
                     />
                     <Text

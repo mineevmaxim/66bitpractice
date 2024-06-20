@@ -3,7 +3,11 @@ import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import { Crumb } from './Crumb/Crumb';
 import cls from './BreadCrumbs.module.scss';
 
-const BreadcrumbsComponent = () => {
+type BreadCrumbsProps = {
+    lastCrumb?: string;
+};
+
+const BreadcrumbsComponent = ({ lastCrumb }: BreadCrumbsProps) => {
     const breadcrumbs = useBreadcrumbs();
 
     return (
@@ -16,6 +20,7 @@ const BreadcrumbsComponent = () => {
 
                     return (
                         <Crumb
+                            lastCrumb={lastCrumb}
                             key={match.pathname}
                             breadcrumb={breadcrumb}
                             isFirstCrumb={isFirstCrumb}

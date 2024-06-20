@@ -8,7 +8,7 @@ export type PositionDto =
     | 'Аналитик'
     | 'Менеджер'
     | 'Дизайнер';
-export type StackDto = 'Мужчина' | 'Женщина';
+export type StackDto = 'C#' | 'React' | 'Java' | 'PHP' | 'Word' | 'Figma';
 
 export interface Employee {
     id: number;
@@ -18,6 +18,18 @@ export interface Employee {
     gender: Gender;
     position: Position;
     stack: Stack[];
+    birthdate: string;
+    dateOfEmployment: string;
+}
+
+export interface EmployeeDto {
+    id: number;
+    name: string;
+    photo: string;
+    phone: string;
+    gender: GenderDto;
+    position: PositionDto;
+    stack: StackDto[];
     birthdate: string;
     dateOfEmployment: string;
 }

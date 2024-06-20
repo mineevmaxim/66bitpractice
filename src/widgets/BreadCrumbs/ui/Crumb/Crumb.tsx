@@ -15,6 +15,7 @@ type TProps = {
     isLastCrumb: boolean;
     isShowArrow: boolean;
     match: BreadcrumbMatch;
+    lastCrumb?: string;
 };
 
 const mapRoutePathToTitle: Record<string, string> = {
@@ -28,6 +29,7 @@ const Component: FC<TProps> = ({
     isFirstCrumb,
     isLastCrumb,
     isShowArrow,
+    lastCrumb,
     match,
 }) => {
     const renderTitle = (crumb: string) => {
@@ -46,7 +48,7 @@ const Component: FC<TProps> = ({
                 <Text
                     className={cls.text}
                     variant={'secondary'}
-                    text={mapRoutePathToTitle[match.pathname] ?? crumb}
+                    text={lastCrumb ?? mapRoutePathToTitle[match.pathname] ?? crumb}
                 />
             );
         } else {
