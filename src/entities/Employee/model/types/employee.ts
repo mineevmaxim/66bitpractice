@@ -1,4 +1,4 @@
-export type Gender = 'male' | 'female';
+export type Gender = 'Male' | 'Female';
 export type Position = 'Frontend' | 'Backend' | 'Analyst' | 'Manager' | 'Designer';
 export type Stack = 'CSharp' | 'React' | 'Java' | 'PHP' | 'Word' | 'Figma';
 export type GenderDto = 'Мужчина' | 'Женщина';
