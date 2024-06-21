@@ -146,7 +146,14 @@ const StaffListPage = memo((props: StaffListPageProps) => {
                         />
 
                         <Select<Stack>
-                            items={[]}
+                            items={[
+                                { title: 'PHP', value: 'PHP' },
+                                { title: 'C#', value: 'CSharp' },
+                                { title: 'Java', value: 'Java' },
+                                { title: 'Word', value: 'Word' },
+                                { title: 'React', value: 'React' },
+                                { title: 'Figma', value: 'Figma' },
+                            ]}
                             selected={
                                 selectedStack
                                     ? {

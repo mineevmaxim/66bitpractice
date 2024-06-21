@@ -17,6 +17,10 @@
     cursor: pointer;
 
     &[data-open] {
+        & p {
+            color: var(--button-color);
+        }
+
         svg {
             transform: rotate(180deg);
         }

@@ -1,9 +1,8 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import { Checkbox, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import cls from './Select.module.scss';
 import { HStack } from '../Stack/HStack/HStack.tsx';
 import ArrowDownIcon from 'shared/assets/icons/arrow-down.svg';
-import ArrowUpIcon from 'shared/assets/icons/arrow-top.svg';
 import CheckboxIcon from 'shared/assets/icons/checkbox.svg';
 import { Text } from '../Text/Text.tsx';
 import { classNames } from 'shared/lib/classNames/classNames.ts';
