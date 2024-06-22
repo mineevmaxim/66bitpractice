@@ -1,14 +1,23 @@
-import { Gender, GenderDto, Position, PositionDto } from '..\typesemployee.ts';
+import { Gender, GenderDto, Position, PositionDto, Stack, StackDto } from '../types/employee.ts';
 
-export const mapPositionDtoToPosition: Record<PositionDto, Position> = {
-    'Frontend-разработчик': 'Frontend',
-    'Backend-разработчик': 'Backend',
-    Менеджер: 'Manager',
-    Аналитик: 'Analyst',
-    Дизайнер: 'Designer',
+export const mapPositionToPositionDto: Record<Position, PositionDto> = {
+    Frontend: 'Frontend-разработчик',
+    Backend: 'Backend-разработчик',
+    Manager: 'Менеджер',
+    Analyst: 'Аналитик',
+    Designer: 'Дизайнер',
 };
 
-export const mapGenderDtoToGender: Record<GenderDto, Gender> = {
-    Женщина: 'Female',
-    Мужчина: 'Male',
+export const mapGenderToGenderDto: Record<Gender, GenderDto> = {
+    Male: 'Мужчина',
+    Female: 'Женщина',
+};
+
+export const mapStackDtoToStack: Record<Stack, StackDto> = {
+    CSharp: 'C#',
+    PHP: 'PHP',
+    Figma: 'Figma',
+    Word: 'Word',
+    Java: 'Java',
+    React: 'React',
 };

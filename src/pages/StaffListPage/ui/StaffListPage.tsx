@@ -7,10 +7,19 @@ import { Text } from 'shared/ui/Text/Text.tsx';
 import { VStack } from 'shared/ui/Stack/VStack/VStack.tsx';
 import { Input } from 'shared/ui/Input/Input.tsx';
 import { Button } from 'shared/ui/Button/Button.tsx';
-import { EmployeeDto, Gender, Position, Stack } from 'entities/Employee';
+import {
+    EmployeeDto,
+    Gender,
+    mapGenderToGenderDto,
+    mapPositionToPositionDto,
+    mapStackDtoToStack,
+    Position,
+    Stack,
+} from 'entities/Employee';
 import axios from 'axios';
 import { StaffList } from 'features/StaffList';
 import { Select, SelectItem } from 'shared/ui/Select/Select.tsx';
+import { Tab } from 'shared/ui/Tab/Tab.tsx';
 
 interface StaffListPageProps {
     className?: string;
@@ -193,8 +202,29 @@ const StaffListPage = memo((props: StaffListPageProps) => {
                     justify={'between'}
                     align={'center'}
                 >
-                    <HStack>
-                        <Text text={'Выбранные фильтры'} />
+                    <HStack gap={'8'}>
+                        <Text text={'Выбранные фильтры:'} />
+                        {selectedPositions.map((pos) => (
+                            <Tab
+                                text={mapPositionToPositionDto[pos]}
+                                key={pos}
+                                onClose={() => onChangePosition({ value: pos, title: pos })}
+                            />
+                        ))}
+                        {selectedGenders.map((gen) => (
+                            <Tab
+                                text={mapGenderToGenderDto[gen]}
+                                key={gen}
+                                onClose={() => onChangeGender({ value: gen, title: gen })}
+                            />
+                        ))}
+                        {selectedStacks.map((s) => (
+                            <Tab
+                                text={mapStackDtoToStack[s]}
+                                key={s}
+                                onClose={() => onChangeStack({ value: s, title: s })}
+                            />
+                        ))}
                     </HStack>
                     <Button
                         onClick={() => {

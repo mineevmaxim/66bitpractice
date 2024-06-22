@@ -8,4 +8,8 @@ export type {
     Gender,
     EmployeeDto,
 } from './model/types/employee';
-export { mapGenderDtoToGender, mapPositionDtoToPosition } from './model/const/consts';
+export {
+    mapPositionToPositionDto,
+    mapGenderToGenderDto,
+    mapStackDtoToStack,
+} from './model/const/consts';
