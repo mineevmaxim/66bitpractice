@@ -6,6 +6,7 @@ import ArrowDownIcon from 'shared/assets/icons/arrow-down.svg';
 import CheckboxIcon from 'shared/assets/icons/checkbox.svg';
 import { Text } from '../Text/Text.tsx';
 import { classNames } from 'shared/lib/classNames/classNames.ts';
+import { Button } from '../Button/Button.tsx';
 
 export type SelectItem<T extends string> = {
     title: string;
@@ -44,7 +45,14 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
                             justify={'between'}
                             gap={'16'}
                         >
-                            <Text text={item.title} />
+                            <Button
+                                variant={'clear'}
+                                onClick={() => {
+                                    onChange?.(item);
+                                }}
+                            >
+                                <Text text={item.title} />
+                            </Button>
                             <Checkbox
                                 className={cls.checkbox}
                                 checked={

@@ -6,9 +6,9 @@ import { HStack } from 'shared/ui/Stack/HStack/HStack.tsx';
 import { EmployeeDto } from 'entities/Employee';
 import { VStack } from 'shared/ui/Stack/VStack/VStack.tsx';
 import { Text } from 'shared/ui/Text/Text.tsx';
-import { Tab } from 'shared/ui/Tab/Tab.tsx';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Card } from 'shared/ui/Card/Card.tsx';
 
 interface ProfilePageProps {
     className?: string;
@@ -66,7 +66,7 @@ const ProfilePage = memo((props: ProfilePageProps) => {
                     />
                     <HStack gap={'16'}>
                         {profile.stack.map((item) => (
-                            <Tab
+                            <Card
                                 key={item}
                                 text={item}
                             />

@@ -3,7 +3,7 @@ import { memo } from 'react';
 import cls from './Tab.module.scss';
 import { Text } from '../Text/Text.tsx';
 import CloseIcon from 'shared/assets/icons/close.svg';
-import { Button } from '../Button/Button.tsx';
+import { Icon } from '../Icon/Icon.tsx';
 
 interface TabProps {
     className?: string;
@@ -16,12 +16,13 @@ export const Tab = memo((props: TabProps) => {
 
     return (
         <div className={classNames(cls.Tab, {}, [className])}>
-            <Button
-                variant={'clear'}
-                onClick={onClose}
-            >
-                <CloseIcon />
-            </Button>
+            <Icon
+                clickable
+                Svg={CloseIcon}
+                height={10}
+                width={10}
+                onClick={onClose ?? (() => {})}
+            />
             <Text
                 text={text}
                 size={'md'}
