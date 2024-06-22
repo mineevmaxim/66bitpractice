@@ -16,7 +16,7 @@ type SelectProps<T extends string> = {
     className?: string;
     items: SelectItem<T>[];
     placeholder?: ReactElement;
-    selected: SelectItem<T> | null;
+    selected: T[];
     onChange?: (selected: SelectItem<T>) => void;
 };
 
@@ -47,7 +47,9 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
                             <Text text={item.title} />
                             <Checkbox
                                 className={cls.checkbox}
-                                checked={selected?.value === item.value}
+                                checked={
+                                    selected?.filter((value) => value === item.value).length > 0
+                                }
                                 onChange={() => {
                                     onChange?.(item);
                                 }}

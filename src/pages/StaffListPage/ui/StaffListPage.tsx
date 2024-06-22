@@ -20,56 +20,113 @@ type GetEmployeesProps = {
     page?: number;
     count?: number;
     name?: string;
-    gender?: Gender;
-    position?: Position;
-    stack?: Stack;
+    genders?: Gender[];
+    positions?: Position[];
+    stacks?: Stack[];
 };
+
+const positionItems: SelectItem<Position>[] = [
+    { title: 'Frontend-Разработчик', value: 'Frontend' },
+    { title: 'Аналитик', value: 'Analyst' },
+    { title: 'Backend-Разработчик', value: 'Backend' },
+    { title: 'Менеджер', value: 'Manager' },
+    { title: 'Дизайнер', value: 'Designer' },
+];
+
+const stackItems: SelectItem<Stack>[] = [
+    { title: 'PHP', value: 'PHP' },
+    { title: 'C#', value: 'CSharp' },
+    { title: 'Java', value: 'Java' },
+    { title: 'Word', value: 'Word' },
+    { title: 'React', value: 'React' },
+    { title: 'Figma', value: 'Figma' },
+];
+
+const genderItems: SelectItem<Gender>[] = [
+    {
+        title: 'Мужчина',
+        value: 'Male' as Gender,
+    },
+    {
+        title: 'Женщина',
+        value: 'Female' as Gender,
+    },
+];
 
 const StaffListPage = memo((props: StaffListPageProps) => {
     const { className } = props;
     const [items, setItems] = useState<EmployeeDto[]>([]);
     const [page, setPage] = useState<number>(1);
-    const [selectedPosition, setSelectedPosition] = useState<Position | null>(null);
-    const [selectedGender, setSelectedGender] = useState<Gender | null>(null);
-    const [selectedStack, setSelectedStack] = useState<Stack | null>(null);
-    const getItems = useCallback((getItemsProps: GetEmployeesProps) => {
-        const { page = 1, gender, name = '', stack, position, count = 5 } = getItemsProps;
-        axios
-            .get<EmployeeDto[]>(`https://frontend-test-api.stk8s.66bit.ru/api/Employee`, {
-                params: {
-                    page,
-                    gender,
-                    name,
-                    stack,
-                    position,
-                    count,
-                },
-            })
-            .then((res) => {
-                if (!res.data) return null;
-                setItems((prev) => [...prev, ...res.data]);
+    const [selectedPositions, setSelectedPositions] = useState<Position[]>([]);
+    const [selectedGenders, setSelectedGenders] = useState<Gender[]>([]);
+    const [selectedStacks, setSelectedStacks] = useState<Stack[]>([]);
+    const [isEmpty, setIsEmpty] = useState<boolean>(false);
+
+    const getItems = useCallback(
+        (getItemsProps: GetEmployeesProps) => {
+            const { page = 1, genders, name = '', stacks, positions, count = 5 } = getItemsProps;
+            if (page !== 1 && isEmpty) return null;
+            const params: string[] = [];
+            const url = 'https://frontend-test-api.stk8s.66bit.ru/api/Employee?';
+
+            params.push(`Page=${page}`);
+            name && params.push(`Name=${name}`);
+            params.push(`Count=${count}`);
+
+            genders?.forEach((value) => {
+                params.push(`Gender=${value}`);
+            });
+
+            positions?.forEach((value) => {
+                params.push(`Position=${value}`);
+            });
+
+            stacks?.forEach((value) => {
+                params.push(`Stack=${value}`);
+            });
+
+            axios.get<EmployeeDto[]>(url + params.join('&')).then((res) => {
+                if (!res.data || res.data.length === 0) {
+                    setIsEmpty(true);
+                } else {
+                    setIsEmpty(false);
+                }
+                if (page === 1) {
+                    setItems([...res.data]);
+                }
+                if (page > 1) {
+                    setItems((prev) => [...prev, ...res.data]);
+                }
                 setPage((prev) => prev + 1);
             });
-    }, []);
+        },
+        [isEmpty],
+    );
 
     const onChangePosition = useCallback(({ value }: SelectItem<Position>) => {
-        setSelectedPosition((prev) => {
-            if (prev === value) return null;
-            return value;
+        setSelectedPositions((prev) => {
+            if (prev.includes(value)) {
+                return [...prev].filter((item) => item !== value);
+            }
+            return [...prev, value];
         });
     }, []);
 
     const onChangeStack = useCallback(({ value }: SelectItem<Stack>) => {
-        setSelectedStack((prev) => {
-            if (prev === value) return null;
-            return value;
+        setSelectedStacks((prev) => {
+            if (prev.includes(value)) {
+                return [...prev].filter((item) => item !== value);
+            }
+            return [...prev, value];
         });
     }, []);
 
     const onChangeGender = useCallback(({ value }: SelectItem<Gender>) => {
-        setSelectedGender((prev) => {
-            if (prev === value) return null;
-            return value;
+        setSelectedGenders((prev) => {
+            if (prev.includes(value)) {
+                return [...prev].filter((item) => item !== value);
+            }
+            return [...prev, value];
         });
     }, []);
 
@@ -81,9 +138,9 @@ const StaffListPage = memo((props: StaffListPageProps) => {
             onScrollEnd={() =>
                 getItems({
                     page,
-                    position: selectedPosition ?? undefined,
-                    gender: selectedGender ?? undefined,
-                    stack: selectedStack ?? undefined,
+                    positions: selectedPositions,
+                    genders: selectedGenders,
+                    stacks: selectedStacks,
                 })
             }
         >
@@ -104,64 +161,21 @@ const StaffListPage = memo((props: StaffListPageProps) => {
                     />
                     <HStack gap={'16'}>
                         <Select<Position>
-                            items={[
-                                { title: 'Frontend-Разработчик', value: 'Frontend' },
-                                { title: 'Аналитик', value: 'Analyst' },
-                                { title: 'Backend-Разработчик', value: 'Backend' },
-                                { title: 'Менеджер', value: 'Manager' },
-                                { title: 'Дизайнер', value: 'Designer' },
-                            ]}
-                            selected={
-                                selectedPosition
-                                    ? {
-                                          value: selectedPosition,
-                                          title: selectedPosition,
-                                      }
-                                    : null
-                            }
+                            items={positionItems}
+                            selected={selectedPositions}
                             placeholder={<Text text={'Должность'} />}
                             onChange={onChangePosition}
                         />
                         <Select<Gender>
-                            items={[
-                                {
-                                    title: 'Мужчина',
-                                    value: 'Male' as Gender,
-                                },
-                                {
-                                    title: 'Женщина',
-                                    value: 'Female' as Gender,
-                                },
-                            ]}
-                            selected={
-                                selectedGender
-                                    ? {
-                                          title: selectedGender,
-                                          value: selectedGender,
-                                      }
-                                    : null
-                            }
+                            items={genderItems}
+                            selected={selectedGenders}
                             placeholder={<Text text={'Пол'} />}
                             onChange={onChangeGender}
                         />
 
                         <Select<Stack>
-                            items={[
-                                { title: 'PHP', value: 'PHP' },
-                                { title: 'C#', value: 'CSharp' },
-                                { title: 'Java', value: 'Java' },
-                                { title: 'Word', value: 'Word' },
-                                { title: 'React', value: 'React' },
-                                { title: 'Figma', value: 'Figma' },
-                            ]}
-                            selected={
-                                selectedStack
-                                    ? {
-                                          value: selectedStack,
-                                          title: selectedStack,
-                                      }
-                                    : null
-                            }
+                            items={stackItems}
+                            selected={selectedStacks}
                             placeholder={<Text text={'Стэк технологий'} />}
                             onChange={onChangeStack}
                         />
@@ -182,7 +196,18 @@ const StaffListPage = memo((props: StaffListPageProps) => {
                     <HStack>
                         <Text text={'Выбранные фильтры'} />
                     </HStack>
-                    <Button>
+                    <Button
+                        onClick={() => {
+                            setIsEmpty(false);
+                            setPage(1);
+                            getItems({
+                                page: 1,
+                                positions: selectedPositions,
+                                genders: selectedGenders,
+                                stacks: selectedStacks,
+                            });
+                        }}
+                    >
                         <Text
                             variant={'inverted'}
                             text={'Найти'}
