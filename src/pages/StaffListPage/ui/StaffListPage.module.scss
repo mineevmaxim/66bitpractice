@@ -8,6 +8,10 @@
     background: var(--accent-color);
 }
 
+.list {
+    overflow: auto;
+}
+
 @media (max-width: 768px) {
     .container {
         width: 100%;

@@ -245,7 +245,7 @@ const StaffListPage = memo((props: StaffListPageProps) => {
                     </Button>
                 </HStack>
             </HStack>
-            <VStack className={cls.container}>
+            <VStack className={classNames(cls.container, {}, [cls.list])}>
                 <StaffList employees={items} />
             </VStack>
         </Page>

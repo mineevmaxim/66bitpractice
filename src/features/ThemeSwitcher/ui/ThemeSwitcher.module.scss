@@ -1,6 +1,4 @@
 .ThemeSwitcher {
-    width: 55px;
-    height: 26px;
     border-radius: 16px;
     background: var(--button-color);
     padding: 2px;
@@ -11,11 +9,34 @@
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    .ThemeSwitcher {
+        width: 47px;
+        height: 22px;
+    }
+
+    .icon {
+        height: 17px;
+        width: 17px;
+    }
+}
+
+@media (min-width: 769px) {
+    .ThemeSwitcher {
+        width: 55px;
+        height: 26px;
+    }
+
+    .icon {
+        height: 20px;
+        width: 20px;
+    }
+}
+
 .icon {
     background: #FFFFFF;
     border-radius: 50%;
-    height: 20px;
-    width: 20px;
+
     display: flex;
     justify-content: center;
     align-items: center;

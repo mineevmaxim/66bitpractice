@@ -1,7 +1,7 @@
 .StuffListItem {
-    width: 100%;
+    min-width: 100%;
     display: grid;
-    grid-template-columns: 4fr 2fr 1fr 1fr;
+    grid-template-columns: 800px 402px 246px 100px;
     grid-auto-flow: column;
     border-bottom: 1px solid var(--border-color);
     padding: 28px 12px 28px 12px;

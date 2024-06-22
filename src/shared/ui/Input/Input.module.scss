@@ -1,29 +1,50 @@
-.InputWrapper {
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    border: 0.5px solid var(--font-color-secondary);
-    height: 43px;
-    width: 100%;
-    top: 400px;
-    left: 200px;
-    padding: 0 10px;
-    gap: 10px;
+
+
+@media (max-width: 768px) {
+    .InputWrapper {
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        border: 0.5px solid var(--font-color-secondary);
+        height: 34px;
+        width: 100%;
+        top: 400px;
+        left: 200px;
+        padding: 0 10px;
+        gap: 10px;
+        font: var(--font-md);
+    }
+}
+
+@media (min-width: 769px) {
+    .InputWrapper {
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        border: 0.5px solid var(--font-color-secondary);
+        height: 43px;
+        width: 100%;
+        top: 400px;
+        left: 200px;
+        padding: 0 10px;
+        gap: 10px;
+        font: var(--font-md);
+    }
 }
 
 .focused {
     border: 0.5px solid var(--button-color);
 
     .addonLeft svg, .addonRight svg {
-        color: var(--accent-redesigned);
+        color: var(--accent-color);
     }
 
-    ::placeholder {
-        color: var(--font-color-secondary);
+    .input::placeholder {
+        color: var(--font-color-primary);
         opacity: 1; /* Firefox */
     }
 
-    ::-ms-input-placeholder { /* Edge 12 -18 */
+    .input::-ms-input-placeholder { /* Edge 12 -18 */
         color: var(--font-color-secondary);
     }
 }
@@ -45,14 +66,14 @@
     border: none;
     outline: none;
     width: 100%;
-    color: var(--text-redesigned);
+    color: var(--font-color-primary);
 
     &:focus {
         outline: none;
     }
 
     &::placeholder {
-        color: var(--hint-redesigned);
+        color: var(--font-color-secondary);
     }
 }
 

@@ -2,6 +2,142 @@
 
 }
 
+@media (max-width: 768px) {
+    .display_2xl {
+        .text {
+            font: var(--font-display-xl);
+        }
+    }
+
+    .display_xl {
+        .text {
+            font: var(--font-display-lg);
+        }
+    }
+
+    .display_lg {
+        .text {
+            font: var(--font-display-md);
+        }
+    }
+
+    .display_md {
+        .text {
+            font: var(--font-display-sm);
+        }
+    }
+
+    .display_sm {
+        .text {
+            font: var(--font-display-xs);
+        }
+    }
+
+    .display_xs {
+        .text {
+            font: var(--font-xl);
+        }
+    }
+
+    .xl {
+        .text {
+            font: var(--font-lg);
+        }
+    }
+
+    .lg {
+        .text {
+            font: var(--font-md);
+        }
+    }
+
+    .md {
+        .text {
+            font: var(--font-sm);
+        }
+    }
+
+    .sm {
+        .text {
+            font: var(--font-xs);
+        }
+    }
+
+    .xs {
+        .text {
+            font: var(--font-xs);
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .display_2xl {
+        .text {
+            font: var(--font-display-2xl);
+        }
+    }
+
+    .display_xl {
+        .text {
+            font: var(--font-display-xl);
+        }
+    }
+
+    .display_lg {
+        .text {
+            font: var(--font-display-lg);
+        }
+    }
+
+    .display_md {
+        .text {
+            font: var(--font-display-md);
+        }
+    }
+
+    .display_sm {
+        .text {
+            font: var(--font-display-sm);
+        }
+    }
+
+    .display_xs {
+        .text {
+            font: var(--font-display-xs);
+        }
+    }
+
+    .xl {
+        .text {
+            font: var(--font-xl);
+        }
+    }
+
+    .lg {
+        .text {
+            font: var(--font-lg);
+        }
+    }
+
+    .md {
+        .text {
+            font: var(--font-md);
+        }
+    }
+
+    .sm {
+        .text {
+            font: var(--font-sm);
+        }
+    }
+
+    .xs {
+        .text {
+            font: var(--font-xs);
+        }
+    }
+}
+
 .wrap {
     .text {
         white-space: wrap;
@@ -51,72 +187,6 @@
 .center {
     .text {
         text-align: center;
-    }
-}
-
-.display_2xl {
-    .text {
-        font: var(--font-display-2xl);
-    }
-}
-
-.display_xl {
-    .text {
-        font: var(--font-display-xl);
-    }
-}
-
-.display_lg {
-    .text {
-        font: var(--font-display-lg);
-    }
-}
-
-.display_md {
-    .text {
-        font: var(--font-display-md);
-    }
-}
-
-.display_sm {
-    .text {
-        font: var(--font-display-sm);
-    }
-}
-
-.display_xs {
-    .text {
-        font: var(--font-display-xs);
-    }
-}
-
-.xl {
-    .text {
-        font: var(--font-xl);
-    }
-}
-
-.lg {
-    .text {
-        font: var(--font-lg);
-    }
-}
-
-.md {
-    .text {
-        font: var(--font-md);
-    }
-}
-
-.sm {
-    .text {
-        font: var(--font-sm);
-    }
-}
-
-.xs {
-    .text {
-        font: var(--font-xs);
     }
 }
 
