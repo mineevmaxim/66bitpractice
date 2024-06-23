@@ -1,8 +1,77 @@
-.Text {
 
+.primary {
+    .text {
+        color: var(--font-color-primary);
+    }
+}
+
+.secondary {
+    .text {
+        color: var(--font-color-secondary);
+    }
+}
+
+.inverted {
+    .text {
+        color: var(--font-color-inverted);
+    }
+}
+
+.right {
+    .text {
+        text-align: right;
+    }
+}
+
+.left {
+    .text {
+        text-align: left;
+    }
+}
+
+.center {
+    .text {
+        text-align: center;
+    }
+}
+
+.regular {
+    .text {
+        font-weight: 400;
+    }
+}
+
+.medium {
+    .text {
+        font-weight: 500;
+    }
+}
+
+.bold {
+    .text {
+        font-weight: 700;
+    }
+}
+
+.semibold {
+    .text {
+        font-weight: 600;
+    }
+}
+
+.raleway {
+    .text {
+        font-family: var(--font-family-main);
+    }
 }
 
 @media (max-width: 768px) {
+    .regular {
+        .text {
+            font-weight: 500;
+        }
+    }
+
     .display_2xl {
         .text {
             font: var(--font-display-xl);
@@ -47,13 +116,13 @@
 
     .lg {
         .text {
-            font: var(--font-md);
+            font: var(--font-xs);
         }
     }
 
     .md {
         .text {
-            font: var(--font-sm);
+            font: var(--font-xs);
         }
     }
 
@@ -135,87 +204,5 @@
         .text {
             font: var(--font-xs);
         }
-    }
-}
-
-.wrap {
-    .text {
-        white-space: wrap;
-        text-wrap: wrap;
-        word-break: break-all;
-    }
-}
-
-.nowrap {
-    .text {
-        text-wrap: nowrap;
-        white-space: nowrap;
-        word-break: break-all;
-    }
-}
-
-.primary {
-    .text {
-        color: var(--font-color-primary);
-    }
-}
-
-.secondary {
-    .text {
-        color: var(--font-color-secondary);
-    }
-}
-
-.inverted {
-    .text {
-        color: var(--font-color-inverted);
-    }
-}
-
-.right {
-    .text {
-        text-align: right;
-    }
-}
-
-.left {
-    .text {
-        text-align: left;
-    }
-}
-
-.center {
-    .text {
-        text-align: center;
-    }
-}
-
-.regular {
-    .text {
-        font-weight: 400;
-    }
-}
-
-.medium {
-    .text {
-        font-weight: 500;
-    }
-}
-
-.bold {
-    .text {
-        font-weight: 700;
-    }
-}
-
-.semibold {
-    .text {
-        font-weight: 600;
-    }
-}
-
-.raleway {
-    .text {
-        font-family: var(--font-family-main);
     }
 }

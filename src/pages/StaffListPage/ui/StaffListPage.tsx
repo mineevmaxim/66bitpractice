@@ -2,7 +2,6 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { memo, useCallback, useState } from 'react';
 import cls from './StaffListPage.module.scss';
 import { Page } from 'widgets/Page';
-import { HStack } from 'shared/ui/Stack/HStack/HStack.tsx';
 import { Text } from 'shared/ui/Text/Text.tsx';
 import { VStack } from 'shared/ui/Stack/VStack/VStack.tsx';
 import { Input } from 'shared/ui/Input/Input.tsx';
@@ -20,6 +19,7 @@ import axios from 'axios';
 import { StaffList } from 'features/StaffList';
 import { Select, SelectItem } from 'shared/ui/Select/Select.tsx';
 import { Tab } from 'shared/ui/Tab/Tab.tsx';
+import { HStack } from 'shared/ui/Stack/HStack/HStack.tsx';
 
 interface StaffListPageProps {
     className?: string;
@@ -66,6 +66,7 @@ const StaffListPage = memo((props: StaffListPageProps) => {
     const { className } = props;
     const [items, setItems] = useState<EmployeeDto[]>([]);
     const [page, setPage] = useState<number>(1);
+    const [query, setQuery] = useState<string>('');
     const [selectedPositions, setSelectedPositions] = useState<Position[]>([]);
     const [selectedGenders, setSelectedGenders] = useState<Gender[]>([]);
     const [selectedStacks, setSelectedStacks] = useState<Stack[]>([]);
@@ -112,32 +113,36 @@ const StaffListPage = memo((props: StaffListPageProps) => {
         [isEmpty],
     );
 
-    const onChangePosition = useCallback(({ value }: SelectItem<Position>) => {
+    const onChangePosition = ({ value }: SelectItem<Position>) => {
         setSelectedPositions((prev) => {
             if (prev.includes(value)) {
                 return [...prev].filter((item) => item !== value);
             }
             return [...prev, value];
         });
-    }, []);
+    };
 
-    const onChangeStack = useCallback(({ value }: SelectItem<Stack>) => {
+    const onChangeStack = ({ value }: SelectItem<Stack>) => {
         setSelectedStacks((prev) => {
             if (prev.includes(value)) {
                 return [...prev].filter((item) => item !== value);
             }
             return [...prev, value];
         });
-    }, []);
+    };
 
-    const onChangeGender = useCallback(({ value }: SelectItem<Gender>) => {
+    const onChangeGender = ({ value }: SelectItem<Gender>) => {
         setSelectedGenders((prev) => {
             if (prev.includes(value)) {
                 return [...prev].filter((item) => item !== value);
             }
             return [...prev, value];
         });
-    }, []);
+    };
+
+    const onChangeQuery = (value: string) => {
+        setQuery(value);
+    };
 
     return (
         <Page
@@ -150,101 +155,93 @@ const StaffListPage = memo((props: StaffListPageProps) => {
                     positions: selectedPositions,
                     genders: selectedGenders,
                     stacks: selectedStacks,
+                    name: query,
                 })
             }
         >
-            <VStack
-                className={cls.container}
-                gap={'16'}
-            >
-                <HStack
-                    max
-                    justify={'between'}
-                    align={'center'}
-                >
-                    <Text
-                        variant={'primary'}
-                        size={'display_lg'}
-                        weight={'bold'}
-                        text={'Список сотрудников'}
+            <div className={classNames(cls.container, {}, [cls.inputsContainer])}>
+                <Text
+                    variant={'primary'}
+                    size={'display_lg'}
+                    weight={'bold'}
+                    text={'Список сотрудников'}
+                    className={cls.title}
+                />
+                <div className={cls.selects}>
+                    <Select<Position>
+                        items={positionItems}
+                        selected={selectedPositions}
+                        placeholder={<Text text={'Должность'} />}
+                        onChange={onChangePosition}
                     />
-                    <HStack gap={'16'}>
-                        <Select<Position>
-                            items={positionItems}
-                            selected={selectedPositions}
-                            placeholder={<Text text={'Должность'} />}
-                            onChange={onChangePosition}
-                        />
-                        <Select<Gender>
-                            items={genderItems}
-                            selected={selectedGenders}
-                            placeholder={<Text text={'Пол'} />}
-                            onChange={onChangeGender}
-                        />
-
-                        <Select<Stack>
-                            items={stackItems}
-                            selected={selectedStacks}
-                            placeholder={<Text text={'Стэк технологий'} />}
-                            onChange={onChangeStack}
-                        />
-                    </HStack>
-                </HStack>
-                <Input placeholder={'Поиск'} />
-            </VStack>
-            <HStack
-                max
-                className={cls.filters}
-                justify={'center'}
-            >
-                <HStack
-                    className={cls.container}
-                    justify={'between'}
-                    align={'center'}
-                >
-                    <HStack gap={'8'}>
+                    <Select<Gender>
+                        items={genderItems}
+                        selected={selectedGenders}
+                        placeholder={<Text text={'Пол'} />}
+                        onChange={onChangeGender}
+                    />
+                    <Select<Stack>
+                        items={stackItems}
+                        selected={selectedStacks}
+                        placeholder={<Text text={'Стэк технологий'} />}
+                        onChange={onChangeStack}
+                    />
+                </div>
+                <Input
+                    placeholder={'Поиск'}
+                    value={query}
+                    onChange={onChangeQuery}
+                    className={cls.search}
+                />
+            </div>
+            <div className={cls.filters}>
+                <div className={cls.container}>
+                    <div className={cls.cards}>
                         <Text text={'Выбранные фильтры:'} />
-                        {selectedPositions.map((pos) => (
-                            <Tab
-                                text={mapPositionToPositionDto[pos]}
-                                key={pos}
-                                onClose={() => onChangePosition({ value: pos, title: pos })}
+                        <HStack gap={'8'}>
+                            {selectedPositions.map((pos) => (
+                                <Tab
+                                    text={mapPositionToPositionDto[pos]}
+                                    key={pos}
+                                    onClose={() => onChangePosition({ value: pos, title: pos })}
+                                />
+                            ))}
+                            {selectedGenders.map((gen) => (
+                                <Tab
+                                    text={mapGenderToGenderDto[gen]}
+                                    key={gen}
+                                    onClose={() => onChangeGender({ value: gen, title: gen })}
+                                />
+                            ))}
+                            {selectedStacks.map((s) => (
+                                <Tab
+                                    text={mapStackDtoToStack[s]}
+                                    key={s}
+                                    onClose={() => onChangeStack({ value: s, title: s })}
+                                />
+                            ))}
+                        </HStack>
+                        <Button
+                            onClick={() => {
+                                setIsEmpty(false);
+                                setPage(1);
+                                getItems({
+                                    page: 1,
+                                    positions: selectedPositions,
+                                    genders: selectedGenders,
+                                    stacks: selectedStacks,
+                                    name: query,
+                                });
+                            }}
+                        >
+                            <Text
+                                variant={'inverted'}
+                                text={'Найти'}
                             />
-                        ))}
-                        {selectedGenders.map((gen) => (
-                            <Tab
-                                text={mapGenderToGenderDto[gen]}
-                                key={gen}
-                                onClose={() => onChangeGender({ value: gen, title: gen })}
-                            />
-                        ))}
-                        {selectedStacks.map((s) => (
-                            <Tab
-                                text={mapStackDtoToStack[s]}
-                                key={s}
-                                onClose={() => onChangeStack({ value: s, title: s })}
-                            />
-                        ))}
-                    </HStack>
-                    <Button
-                        onClick={() => {
-                            setIsEmpty(false);
-                            setPage(1);
-                            getItems({
-                                page: 1,
-                                positions: selectedPositions,
-                                genders: selectedGenders,
-                                stacks: selectedStacks,
-                            });
-                        }}
-                    >
-                        <Text
-                            variant={'inverted'}
-                            text={'Найти'}
-                        />
-                    </Button>
-                </HStack>
-            </HStack>
+                        </Button>
+                    </div>
+                </div>
+            </div>
             <VStack className={classNames(cls.container, {}, [cls.list])}>
                 <StaffList employees={items} />
             </VStack>

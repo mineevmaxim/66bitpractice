@@ -19,6 +19,49 @@
 
         grid-template-columns: 1fr;
     }
+
+    .inputsContainer {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-auto-flow: row;
+        grid-row-gap: 8px;
+    }
+
+    .filters {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .selects {
+        grid-row: 3;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .search {
+        grid-row: 2;
+    }
+
+
+    .title {
+        width: 100%;
+        grid-row: 1;
+
+        & p {
+            font: var(--font-xl) !important;
+            font-weight: 700 !important;
+        }
+    }
 }
 
 @media (min-width: 768px) {
