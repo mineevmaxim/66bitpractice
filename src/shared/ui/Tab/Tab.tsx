@@ -24,6 +24,7 @@ export const Tab = memo((props: TabProps) => {
                 onClick={onClose ?? (() => {})}
             />
             <Text
+                className={cls.text}
                 text={text}
                 size={'md'}
             />

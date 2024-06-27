@@ -12,12 +12,20 @@
 
         grid-template-columns: 1fr;
     }
+
+    .crumbs {
+
+    }
 }
 
 @media (min-width: 768px) {
     .grid {
         width: 680px;
         padding: 20px 50px;
+    }
+
+    .crumbs {
+        padding: 0 50px;
     }
 }
 
@@ -26,12 +34,20 @@
         width: 1000px;
         padding: 20px 120px;
     }
+
+    .crumbs {
+        padding: 0 120px;
+    }
 }
 
 @media (min-width: 1600px) {
     .grid {
         width: 1584px;
         padding: 20px 180px;
+    }
+
+    .crumbs {
+        padding: 0 180px;
     }
 }
 

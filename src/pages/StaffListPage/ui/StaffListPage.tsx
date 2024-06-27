@@ -19,7 +19,6 @@ import axios from 'axios';
 import { StaffList } from 'features/StaffList';
 import { Select, SelectItem } from 'shared/ui/Select/Select.tsx';
 import { Tab } from 'shared/ui/Tab/Tab.tsx';
-import { HStack } from 'shared/ui/Stack/HStack/HStack.tsx';
 
 interface StaffListPageProps {
     className?: string;
@@ -160,13 +159,7 @@ const StaffListPage = memo((props: StaffListPageProps) => {
             }
         >
             <div className={classNames(cls.container, {}, [cls.inputsContainer])}>
-                <Text
-                    variant={'primary'}
-                    size={'display_lg'}
-                    weight={'bold'}
-                    text={'Список сотрудников'}
-                    className={cls.title}
-                />
+                <p className={cls.title}>Список сотрудников</p>
                 <div className={cls.selects}>
                     <Select<Position>
                         items={positionItems}
@@ -195,51 +188,49 @@ const StaffListPage = memo((props: StaffListPageProps) => {
                 />
             </div>
             <div className={cls.filters}>
-                <div className={cls.container}>
-                    <div className={cls.cards}>
-                        <Text text={'Выбранные фильтры:'} />
-                        <HStack gap={'8'}>
-                            {selectedPositions.map((pos) => (
-                                <Tab
-                                    text={mapPositionToPositionDto[pos]}
-                                    key={pos}
-                                    onClose={() => onChangePosition({ value: pos, title: pos })}
-                                />
-                            ))}
-                            {selectedGenders.map((gen) => (
-                                <Tab
-                                    text={mapGenderToGenderDto[gen]}
-                                    key={gen}
-                                    onClose={() => onChangeGender({ value: gen, title: gen })}
-                                />
-                            ))}
-                            {selectedStacks.map((s) => (
-                                <Tab
-                                    text={mapStackDtoToStack[s]}
-                                    key={s}
-                                    onClose={() => onChangeStack({ value: s, title: s })}
-                                />
-                            ))}
-                        </HStack>
-                        <Button
-                            onClick={() => {
-                                setIsEmpty(false);
-                                setPage(1);
-                                getItems({
-                                    page: 1,
-                                    positions: selectedPositions,
-                                    genders: selectedGenders,
-                                    stacks: selectedStacks,
-                                    name: query,
-                                });
-                            }}
-                        >
-                            <Text
-                                variant={'inverted'}
-                                text={'Найти'}
+                <div className={classNames(cls.cards, {}, [cls.container])}>
+                    <div className={cls.filtersText}>Выбранные фильтры:</div>
+                    <div className={cls.tabs}>
+                        {selectedPositions.map((pos) => (
+                            <Tab
+                                text={mapPositionToPositionDto[pos]}
+                                key={pos}
+                                onClose={() => onChangePosition({ value: pos, title: pos })}
                             />
-                        </Button>
+                        ))}
+                        {selectedGenders.map((gen) => (
+                            <Tab
+                                text={mapGenderToGenderDto[gen]}
+                                key={gen}
+                                onClose={() => onChangeGender({ value: gen, title: gen })}
+                            />
+                        ))}
+                        {selectedStacks.map((s) => (
+                            <Tab
+                                text={mapStackDtoToStack[s]}
+                                key={s}
+                                onClose={() => onChangeStack({ value: s, title: s })}
+                            />
+                        ))}
                     </div>
+                    <Button
+                        onClick={() => {
+                            setIsEmpty(false);
+                            setPage(1);
+                            getItems({
+                                page: 1,
+                                positions: selectedPositions,
+                                genders: selectedGenders,
+                                stacks: selectedStacks,
+                                name: query,
+                            });
+                        }}
+                    >
+                        <Text
+                            variant={'inverted'}
+                            text={'Найти'}
+                        />
+                    </Button>
                 </div>
             </div>
             <VStack className={classNames(cls.container, {}, [cls.list])}>

@@ -2,16 +2,18 @@ import { memo } from 'react';
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import { Crumb } from './Crumb/Crumb';
 import cls from './BreadCrumbs.module.scss';
+import { classNames } from 'shared/lib/classNames/classNames.ts';
 
 type BreadCrumbsProps = {
     lastCrumb?: string;
+    className?: string;
 };
 
-const BreadcrumbsComponent = ({ lastCrumb }: BreadCrumbsProps) => {
+const BreadcrumbsComponent = ({ lastCrumb, className }: BreadCrumbsProps) => {
     const breadcrumbs = useBreadcrumbs();
 
     return (
-        <nav className={cls.Breadcrumbs}>
+        <nav className={classNames(cls.Breadcrumbs, {}, [className])}>
             <div className={cls.container}>
                 {breadcrumbs.map(({ breadcrumb, match }, index) => {
                     const isFirstCrumb = index === 0;

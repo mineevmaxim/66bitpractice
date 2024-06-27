@@ -15,7 +15,7 @@
 @media (max-width: 768px) {
     .container {
         width: 100%;
-        padding: 15px;
+        padding: 16px 24px;
 
         grid-template-columns: 1fr;
     }
@@ -29,14 +29,31 @@
     }
 
     .filters {
+        padding: 16px 24px;
         width: 100%;
         display: flex;
         flex-direction: column;
     }
 
+    .filtersText {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16.44px;
+        text-align: left;
+    }
+
     .cards {
         display: flex;
         flex-direction: column;
+        gap: 8px;
+        padding: 0;
+        width: 100%;
+    }
+
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: 8px;
     }
 
@@ -64,17 +81,72 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .container {
-        width: 680px;
+        width: 700px;
         padding: 20px 0;
+    }
+
+    .inputsContainer {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        grid-row-gap: 28px;
+    }
+
+    .title {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 46.96px;
+        text-align: left;
+    }
+
+    .selects {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    .search {
+        grid-column: 1/-1;
+    }
+
+    .filters {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .filtersText {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 23.48px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: min-content 1fr min-content;
+        align-items: center;
+        grid-column-gap: 40px;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 24px;
+        overflow: auto;
     }
 }
 
 @media (min-width: 1280px) {
     .container {
-        width: 1000px;
+        width: 1024px;
         padding: 20px 0;
+    }
+
+    .filters {
+        width: 100%;
     }
 }
 
@@ -82,5 +154,9 @@
     .container {
         width: 1584px;
         padding: 20px 0;
+    }
+
+    .filters {
+        width: 100%;
     }
 }

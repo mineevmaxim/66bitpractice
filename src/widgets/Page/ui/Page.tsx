@@ -25,7 +25,10 @@ export const Page = memo((props: PageProps) => {
     });
     return (
         <>
-            <Breadcrumbs lastCrumb={crumb} />
+            <Breadcrumbs
+                lastCrumb={crumb}
+                className={grid ? cls.crumbs : undefined}
+            />
             <main
                 className={classNames(cls.Page, { [cls.center]: center, [cls.grid]: grid }, [
                     className,
