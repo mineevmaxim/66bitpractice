@@ -2,10 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { memo, useEffect, useState } from 'react';
 import cls from './ProfilePage.module.scss';
 import { Page } from 'widgets/Page';
-import { HStack } from 'shared/ui/Stack/HStack/HStack.tsx';
 import { EmployeeDto } from 'entities/Employee';
-import { VStack } from 'shared/ui/Stack/VStack/VStack.tsx';
-import { Text } from 'shared/ui/Text/Text.tsx';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Card } from 'shared/ui/Card/Card.tsx';
@@ -40,12 +37,7 @@ const ProfilePage = memo((props: ProfilePageProps) => {
             center={false}
             className={classNames(cls.ProfilePage, {}, [className])}
         >
-            <HStack
-                max
-                gap={'32'}
-                align={'start'}
-                className={cls.info}
-            >
+            <div className={cls.info}>
                 <div className={cls.imageContainer}>
                     <img
                         src={profile.photo}
@@ -53,72 +45,30 @@ const ProfilePage = memo((props: ProfilePageProps) => {
                         className={cls.image}
                     />
                 </div>
-                <VStack gap={'16'}>
-                    <Text
-                        text={profile.name}
-                        size={'display_lg'}
-                        weight={'bold'}
-                    />
-                    <Text
-                        text={profile.position}
-                        size={'xl'}
-                        weight={'medium'}
-                    />
-                    <HStack gap={'16'}>
-                        {profile.stack.map((item) => (
-                            <Card
-                                key={item}
-                                text={item}
-                            />
-                        ))}
-                    </HStack>
-                </VStack>
-            </HStack>
-            <VStack
-                gap={'32'}
-                className={cls.description}
-            >
-                <Text
-                    size={'display_sm'}
-                    weight={'semibold'}
-                    text={'Основная информация'}
-                />
-                <div className={cls.descriptionGrid}>
-                    <Text
-                        size={'display_xs'}
-                        weight={'medium'}
-                        text={'Контактный телефон:'}
-                        className={cls.left}
-                    />
-                    <Text
-                        size={'display_xs'}
-                        text={profile.phone.replace('(', '').replace(')', '')}
-                        className={cls.right}
-                    />
-                    <Text
-                        size={'display_xs'}
-                        weight={'medium'}
-                        text={'Дата рождения:'}
-                        className={cls.left}
-                    />
-                    <Text
-                        size={'display_xs'}
-                        text={profile.birthdate}
-                        className={cls.right}
-                    />
-                    <Text
-                        size={'display_xs'}
-                        weight={'medium'}
-                        text={'Дата устройства:'}
-                        className={cls.left}
-                    />
-                    <Text
-                        size={'display_xs'}
-                        text={profile.dateOfEmployment}
-                        className={cls.right}
-                    />
+                <div className={cls.profileInfo}>
+                    <p className={cls.name}>{profile.name}</p>
+                    <p className={cls.position}>{profile.position}</p>
                 </div>
-            </VStack>
+                <div className={cls.stack}>
+                    {profile.stack.map((item) => (
+                        <Card
+                            key={item}
+                            text={item}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div className={cls.description}>
+                <p className={cls.subTitle}>Основная информация</p>
+                <div className={cls.descriptionGrid}>
+                    <p className={cls.left}>Контактный телефон:</p>
+                    <p className={cls.left}>Дата рождения:</p>
+                    <p className={cls.left}>Дата устройства:</p>
+                    <p className={cls.right}>{profile.phone.replace('(', '').replace(')', '')}</p>
+                    <p className={cls.right}>{profile.birthdate}</p>
+                    <p className={cls.right}>{profile.dateOfEmployment}</p>
+                </div>
+            </div>
         </Page>
     );
 });

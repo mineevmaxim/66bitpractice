@@ -5,6 +5,7 @@
     align-items: center;
     height: var(--bread-crumbs-height);
     width: 100%;
+    overflow: hidden;
 }
 
 .container {
@@ -23,17 +24,20 @@
 @media (min-width: 768px) {
     .container {
         width: 680px;
+        padding: 0 50px;
     }
 }
 
 @media (min-width: 1280px) {
     .container {
         width: 1000px;
+        padding: 0 120px;
     }
 }
 
 @media (min-width: 1600px) {
     .container {
         width: 1584px;
+        padding: 0 180px;
     }
 }
