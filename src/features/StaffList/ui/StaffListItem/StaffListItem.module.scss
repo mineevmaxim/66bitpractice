@@ -1,7 +1,7 @@
 .StuffListItem {
     min-width: 100%;
     display: grid;
-    grid-template-columns: 800px 402px 246px 100px;
+    grid-template-columns: 725px 402px 282px 151px;
     grid-auto-flow: column;
     border-bottom: 1px solid var(--border-color);
     padding: 28px 12px 28px 12px;
@@ -12,14 +12,26 @@
     }
 }
 
+@media (max-width: 768px) {
+    .StuffListItem {
+        grid-template-columns: 100px repeat(3, 120px);
+        grid-column-gap: 16px;
+    }
+}
+
 .header {
     pointer-events: none;
 }
 
-.item {
+.item,
+.firstItem {
     display: flex;
     height: 100%;
     width: 100%;
     align-items: center;
     justify-content: start;
+}
+
+.item {
+    white-space: nowrap;
 }

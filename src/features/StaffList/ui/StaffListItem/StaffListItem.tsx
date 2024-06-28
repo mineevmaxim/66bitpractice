@@ -6,6 +6,7 @@ import { Text } from 'shared/ui/Text/Text.tsx';
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line ellepheria-plugin/layer-imports
 import { RoutePath } from 'app/providers/router/routeConfig.tsx';
+import { formatDate } from 'shared/lib/dates/dates.ts';
 
 interface StuffListItemProps {
     className?: string;
@@ -23,13 +24,13 @@ export const StaffListItem = memo((props: StuffListItemProps) => {
                     align={'left'}
                     text={'ФИО'}
                     variant={'secondary'}
-                    className={cls.item}
+                    className={cls.firstItem}
                 />
                 <Text
                     align={'left'}
                     text={'Должность'}
                     variant={'secondary'}
-                    className={cls.item}
+                    className={cls.firstItem}
                 />
                 <Text
                     align={'left'}
@@ -55,12 +56,12 @@ export const StaffListItem = memo((props: StuffListItemProps) => {
             <Text
                 text={employee?.name}
                 variant={'primary'}
-                className={cls.item}
+                className={cls.firstItem}
             />
             <Text
                 text={employee?.position}
                 variant={'primary'}
-                className={cls.item}
+                className={cls.firstItem}
             />
             <Text
                 text={employee?.phone.replace('(', '').replace(')', '')}
@@ -68,7 +69,7 @@ export const StaffListItem = memo((props: StuffListItemProps) => {
                 className={cls.item}
             />
             <Text
-                text={employee?.birthdate}
+                text={formatDate(employee?.birthdate ?? '')}
                 variant={'primary'}
                 className={cls.item}
             />

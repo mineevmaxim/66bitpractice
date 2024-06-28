@@ -22,6 +22,7 @@ const BreadcrumbsComponent = ({ lastCrumb, className }: BreadCrumbsProps) => {
 
                     return (
                         <Crumb
+                            className={cls.crumb}
                             lastCrumb={lastCrumb}
                             key={match.pathname}
                             breadcrumb={breadcrumb}

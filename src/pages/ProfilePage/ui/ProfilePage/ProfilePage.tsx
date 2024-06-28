@@ -6,6 +6,7 @@ import { EmployeeDto } from 'entities/Employee';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Card } from 'shared/ui/Card/Card.tsx';
+import { formatDate } from 'shared/lib/dates/dates.ts';
 
 interface ProfilePageProps {
     className?: string;
@@ -65,8 +66,8 @@ const ProfilePage = memo((props: ProfilePageProps) => {
                     <p className={cls.left}>Дата рождения:</p>
                     <p className={cls.left}>Дата устройства:</p>
                     <p className={cls.right}>{profile.phone.replace('(', '').replace(')', '')}</p>
-                    <p className={cls.right}>{profile.birthdate}</p>
-                    <p className={cls.right}>{profile.dateOfEmployment}</p>
+                    <p className={cls.right}>{formatDate(profile.birthdate)}</p>
+                    <p className={cls.right}>{formatDate(profile.dateOfEmployment)}</p>
                 </div>
             </div>
         </Page>

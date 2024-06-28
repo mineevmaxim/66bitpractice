@@ -1,5 +1,6 @@
 .Crumb {
     display: flex;
+    flex-direction: row;
     width: min-content;
     align-items: center;
     color: var(--font-color-secondary);
@@ -23,13 +24,24 @@
 
     &Icon {
         &__arrow {
-            margin: 0 20px;
+            margin: 0;
             display: flex;
             align-items: center;
             flex-shrink: 0;
             height: 100%;
-            width: 100%;
+            width: auto;
         }
+    }
+}
 
+@media (max-width: 768px) {
+    .Crumb {
+        gap: 12px;
+    }
+}
+
+@media (min-width: 769px) {
+    .Crumb {
+        gap: 16px;
     }
 }
